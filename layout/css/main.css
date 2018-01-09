@@ -1,10 +1,58 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : Jan 9, 2018, 9:20:31 AM
-    Author     : Student
-*/
+.text-center{
+    margin-bottom: 0px;
+}
+.text-center > h2{
 
+    font-size: 60px;
+}
+.container-fluid{
+    margin-top: 0px;
+}
+.container-fluid > a{
+    float:right;
+}
+
+h3:first-child{
+
+    text-align: left;
+}
+.flex-container{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+
+}
+.makecourse {
+    height: 50px;
+    width: 140px;
+    max-width: 140px;
+    margin-right: 5px;
+    border-radius: 4px;
+    background-color: steelblue;
+    border: none;
+    color: #FFFFFF;
+    margin-bottom: 300px;
+}
+
+.viewcourse {
+    height: 50px;
+    width: 140px;
+    max-width: 140px;
+    border-radius: 4px;
+    background-color: steelblue;
+    border: none;
+    color: #FFFFFF;
+    margin-bottom: 300px;
+    
+}
+
+.mainfooter h3{
+
+    text-align: center;
+    font-size: 18px;
+}
