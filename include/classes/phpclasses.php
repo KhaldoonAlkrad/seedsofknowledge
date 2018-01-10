@@ -1,6 +1,5 @@
 <?php
 
-
 function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
@@ -11,7 +10,7 @@ function test_input($data) {
 //////////////////////user
 class user {
 
-    public $id=null;
+    public $id = null;
     public $name;
     public $email;
     public $password;
@@ -55,7 +54,7 @@ class user {
     public function setpassword($password) {
         $this->password = $password;
     }
-    
+
     public function getrole() {
         return $this->role;
     }
@@ -63,14 +62,14 @@ class user {
     public function setrole($role) {
         $this->role = $role;
     }
-    
+
     public function checkaccountinput() {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            
+
             if (isset($_POST["name"])) {
-                
+
                 $this->setname(test_input($_POST["name"]));
-              
+
                 if ($this->name == "") {
                     return "name can not be empty <br>";
                 }
@@ -96,70 +95,85 @@ class user {
                     return "password can not be empty";
                 }
             }
-            
-               if($_POST['pwd'] != $_POST['cpwd']) { 
-                    return "passwords do not match"; 
-                } 
+
+            if ($_POST['pwd'] != $_POST['cpwd']) {
+                return "passwords do not match";
+            }
             if (isset($_POST["role"])) {
                 $this->setrole(test_input($_POST["role"]));
-               
             }
-            
+
 
             if ($this->checkifaccountexist() == false) {
                 return $this->addaccount();
             } else {
                 return "the username or the email that you have enterd is al ready exist! Please choose another one";
             }
-            
         }
     }
-    
+
     public function checkifaccountexist() {
-            $sql = "SELECT * FROM `user` WHERE `email`='.$this->email.'";
-            $connection= new Database();
-            $result = $connection->conn->query($sql);
-            if ($result->num_rows >= 1) {
+        $sql = "SELECT * FROM `user` WHERE `email`='.$this->email.'";
+        $connection = new Database();
+        $result = $connection->conn->query($sql);
+        if ($result->num_rows >= 1) {
             $connection->conn->close();
-                return true;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function addaccount() {
+
+        $sql = "INSERT INTO `user`(`name`, `email`, `password`, `role`) VALUES";
+        $sql .= " ('$this->name','$this->email','$this->password','$this->role')";
+        $connection = new Database();
+        $result = $connection->conn->query($sql);
+        session_start();
+        $_SESSION["name"] = $this->name;
+        $connection->conn->close();
+    }
+
+    public function signin() {
+
+        $sql = "SELECT * FROM `user` WHERE `email`= '$this->email' AND `password`= '$this->password'";
+        $connection = new Database();
+        $result = $connection->conn->query($sql);
+        if (isset($result)) {
+            if ($result->num_rows <= 0) {
+                return "username or password does not match";
             } else {
-                return false;
+                session_start();
+                $row = $result->fetch_assoc();
+                $_SESSION["name"] = $row['name'];
+                $connection->conn->close();
+                header("location: index.php");
             }
         }
-    
-    public function addaccount() {
-            
-            $sql = "INSERT INTO `user`(`name`, `email`, `password`, `role`) VALUES";
-            $sql .= " ('$this->name','$this->email','$this->password','$this->role')";
-            $connection= new Database();
-            $result = $connection->conn->query($sql);
-            session_start();
-            $_SESSION["name"] = $this->name;
-            $connection->conn->close();
-          
-        }
-        
-        public function signin() {
+    }
 
-            $sql = "SELECT * FROM `user` WHERE `name`= '$this->name' AND `password`= '$this->psd'";
-            $result = $connection->conn->query($sql);
-            if (isset($result)) {
-                if ($result->num_rows <= 0) {
-                    return "username or password does not match";
-                } else {
-                    session_start();
-                    $row = $result->fetch_assoc();
-                    $_SESSION["name"] = $row['name'];
-                    $connection->conn->close();
-                    return "gelukt";
-                    header("location: login.php");
+    public function checksignin() {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST["email"])) {
+                $this->setemail(test_input($_POST["email"]));
+                if ($this->email == "") {
+                    return "email can not be empty <br>";
                 }
             }
+            if (isset($_POST["psw"])) {
+                $this->setpassword(test_input($_POST["psw"]));
+                if ($this->password == "") {
+                    return "password can not be empty";
+                }
+            }
+            if ($this->email != "" && $this->password != "") {
+                return $this->signin();
+            }
         }
     }
-    
 
-
+}
 
 //////////////////////course
 class course {
@@ -243,6 +257,7 @@ class subcourse {
     public function setcourseID($courseID) {
         $this->courseID = $courseID;
     }
+
 }
 
 //////////////////////lesson
@@ -348,11 +363,5 @@ class section {
     }
 
 }
-
-
-
-    
-
-
 
 ?>

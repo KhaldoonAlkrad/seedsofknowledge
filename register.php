@@ -6,62 +6,24 @@ include $tem . 'header.php';
 include $tem . 'nav.php';
 ?>
 
-<div class="container">
-    <h2>New User</h2>
-    <form class="form-horizontal" action="register.php" method="POST">
-        <div class="form-group">
-
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="name" placeholder="Name" name="name" required>
-            </div>
-        </div>
-        <div class="form-group">
-
-            <div class="col-sm-10">
-                <input type="email" class="form-control" id="email" placeholder="Email" name="email" required>
-            </div>
-        </div>
-        <div class="form-group">
-
-            <div class="col-sm-10">          
-                <input type="password" class="form-control" id="pwd" placeholder="Password" name="pwd" required>
-            </div>
-        </div>
-        <div class="form-group">
-
-            <div class="col-sm-10">          
-                <input type="password" class="form-control" id="cpwd" placeholder="Verify password" name="cpwd" required>
-            </div>
-        </div>
-        <div class="form-group">        
-            <div class="col-sm-offset-2 col-sm-10">
-
-            </div>
-        </div>
-        <div class="radio">
-            <label><input type="radio" name="role" value="student" required>Student</label>
-            <label><input type="radio" name="role" value="teacher" required>Teacher</label>
-        </div>
-        <div class="form-group">        
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">Submit</button>
-            </div>
+<div class="formdiv">
+    
+    <form class="registerform" action="register.php" method="POST">
+        <div class="container">
+            <legend>New User</legend>
+            <input type="text"  id="name" placeholder="Name" name="name" required>
+            <input type="email"  id="email" placeholder="Email" name="email" required>
+            <input type="password"  id="pwd" placeholder="Password" name="pwd" required>
+            <input type="password" id="cpwd" placeholder="Verify password" name="cpwd" required>
+            <label><input type="radio" name="role" value="student" required>&nbsp;Student&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <label><input type="radio" name="role" value="teacher" required>&nbsp;Teacher</label>
+            <button type="submit" >Submit</button>
             <?php
             $user = new user("", "", "", "", ""); //nieuwe parameters
             $msg = $user->checkaccountinput();
             ?>
-            <span class=error> <?php echo $msg; ?> </span>
+            <div class=error> <?php echo $msg; ?> </div>
         </div>
     </form>
 </div>
-
-
-
-
-
-
-
-
-
-
 <?php include $tem . 'footer.php'; ?>
