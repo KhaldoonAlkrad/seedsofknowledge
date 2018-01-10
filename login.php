@@ -3,8 +3,13 @@ include 'inti.php';
 include $tem . 'header.php';
 ?>
 <?php
-include $tem . 'nav.php';
-?>
+    if (isset($_SESSION["name"]) && $_SESSION["name"] != "") {
+    
+        include $tem . 'loginnav.php';
+    } else {
+        include $tem . 'nav.php';
+    }
+    ?>
 
 <div class="formdiv">
     <form action="login.php" method="POST">

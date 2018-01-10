@@ -133,6 +133,7 @@ class user {
         session_start();
         $_SESSION["name"] = $this->name;
         $connection->conn->close();
+        header("location: login.php");
     }
 
     public function signin() {

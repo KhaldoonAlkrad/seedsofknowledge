@@ -3,9 +3,13 @@ include 'inti.php';
 include $tem . 'header.php';
 ?>
 <div class="webcontainer">
-
     <?php
-    include $tem . 'nav.php';
+    if (isset($_SESSION["name"]) && $_SESSION["name"] != "") {
+      
+        include $tem . 'loginnav.php';
+    } else {
+         include $tem . 'nav.php';
+    }
     ?>
 
     <div class="row">
