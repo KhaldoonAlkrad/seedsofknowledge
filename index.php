@@ -3,18 +3,10 @@ include 'inti.php';
 include $tem . 'header.php';
 ?>
 <div class="webcontainer">
-    <div class="header">
 
-        <nav class="container-fluid text-center">
-            <a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login&nbsp;</a>
-            <a href="register.php"><span class="glyphicon glyphicon-user" ></span> Sign Up &nbsp;</a>
-        </nav>
-        <header class="jumbotron text-center">
-            <h1>Seeds of Knowledge</h1>
-        </header>
-
-    </div>
-
+    <?php
+    include $tem . 'nav.php';
+    ?>
 
     <div class="row">
         <div class="column">
@@ -42,11 +34,7 @@ include $tem . 'header.php';
 
     </div>
 
-    <div class="row flex-container ">
-        <button type="button" class="makecourse">Make Course</button>
-        <button type="button" class="viewcourse">View Course</button>
-    </div>
 
-   
-        <?php include $tem . 'footer.php'; ?> 
-   
+</div>
+
+<?php include $tem . 'footer.php'; ?> 

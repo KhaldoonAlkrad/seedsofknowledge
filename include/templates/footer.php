@@ -6,7 +6,6 @@
     </footer>
 
 
-</div>
 
 </body>
 </html>

@@ -1,9 +1,17 @@
 <?php
 
+
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
 //////////////////////user
 class user {
 
-    public $id;
+    public $id=null;
     public $name;
     public $email;
     public $password;
@@ -29,7 +37,7 @@ class user {
     }
 
     public function setname($name) {
-        $this->id = $name;
+        $this->name = $name;
     }
 
     public function getemail() {
@@ -37,7 +45,7 @@ class user {
     }
 
     public function setemail($email) {
-        $this->id = $email;
+        $this->email = $email;
     }
 
     public function getpassword() {
@@ -45,7 +53,7 @@ class user {
     }
 
     public function setpassword($password) {
-        $this->id = $password;
+        $this->password = $password;
     }
     
     public function getrole() {
@@ -53,10 +61,105 @@ class user {
     }
 
     public function setrole($role) {
-        $this->id = $role;
+        $this->role = $role;
     }
+    
+    public function checkaccountinput() {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            
+            if (isset($_POST["name"])) {
+                
+                $this->setname(test_input($_POST["name"]));
+              
+                if ($this->name == "") {
+                    return "name can not be empty <br>";
+                }
+            }
 
-}
+
+            if (isset($_POST["email"])) {
+                $this->setemail(test_input($_POST["email"]));
+                if ($this->email == "") {
+                    return "email can not be empty";
+                }
+            }
+
+            if (isset($_POST["pwd"])) {
+                $this->setpassword(test_input($_POST["pwd"]));
+                if ($this->password == "") {
+                    return "password can not be empty";
+                }
+            }
+            if (isset($_POST["cpwd"])) {
+                $this->setpassword(test_input($_POST["cpwd"]));
+                if ($this->password == "") {
+                    return "password can not be empty";
+                }
+            }
+            
+               if($_POST['pwd'] != $_POST['cpwd']) { 
+                    return "passwords do not match"; 
+                } 
+            if (isset($_POST["role"])) {
+                $this->setrole(test_input($_POST["role"]));
+               
+            }
+            
+
+            if ($this->checkifaccountexist() == false) {
+                return $this->addaccount();
+            } else {
+                return "the username or the email that you have enterd is al ready exist! Please choose another one";
+            }
+            
+        }
+    }
+    
+    public function checkifaccountexist() {
+            $sql = "SELECT * FROM `user` WHERE `email`='.$this->email.'";
+            $connection= new Database();
+            $result = $connection->conn->query($sql);
+            if ($result->num_rows >= 1) {
+            $connection->conn->close();
+                return true;
+            } else {
+                return false;
+            }
+        }
+    
+    public function addaccount() {
+            
+            $sql = "INSERT INTO `user`(`name`, `email`, `password`, `role`) VALUES";
+            $sql .= " ('$this->name','$this->email','$this->password','$this->role')";
+            $connection= new Database();
+            $result = $connection->conn->query($sql);
+            session_start();
+            $_SESSION["name"] = $this->name;
+            $connection->conn->close();
+          
+        }
+        
+        public function signin() {
+
+            $sql = "SELECT * FROM `user` WHERE `name`= '$this->name' AND `password`= '$this->psd'";
+            $result = $connection->conn->query($sql);
+            if (isset($result)) {
+                if ($result->num_rows <= 0) {
+                    return "username or password does not match";
+                } else {
+                    session_start();
+                    $row = $result->fetch_assoc();
+                    $_SESSION["name"] = $row['name'];
+                    $connection->conn->close();
+                    return "gelukt";
+                    header("location: login.php");
+                }
+            }
+        }
+    }
+    
+
+
 
 //////////////////////course
 class course {
@@ -83,7 +186,7 @@ class course {
     }
 
     public function setname($name) {
-        $this->id = $name;
+        $this->name = $name;
     }
 
     public function getdesc() {
@@ -91,7 +194,7 @@ class course {
     }
 
     public function setdesc($desc) {
-        $this->id = $desc;
+        $this->desc = $desc;
     }
 
 }
@@ -122,7 +225,7 @@ class subcourse {
     }
 
     public function setname($name) {
-        $this->id = $name;
+        $this->name = $name;
     }
 
     public function getdesc() {
@@ -130,7 +233,7 @@ class subcourse {
     }
 
     public function setdesc($email) {
-        $this->id = $email;
+        $this->email = $email;
     }
 
     public function getcourseID() {
@@ -138,7 +241,7 @@ class subcourse {
     }
 
     public function setcourseID($courseID) {
-        $this->id = $courseID;
+        $this->courseID = $courseID;
     }
 }
 
@@ -168,7 +271,7 @@ class lesson {
     }
 
     public function setname($name) {
-        $this->id = $name;
+        $this->name = $name;
     }
 
     public function getdesc() {
@@ -176,7 +279,7 @@ class lesson {
     }
 
     public function setdesc($desc) {
-        $this->id = $desc;
+        $this->desc = $desc;
     }
 
     public function getsubcourseID() {
@@ -184,7 +287,7 @@ class lesson {
     }
 
     public function setsubcourseID($subcourseID) {
-        $this->id = $subcourseID;
+        $this->subcourseID = $subcourseID;
     }
 
 }
@@ -217,7 +320,7 @@ class section {
     }
 
     public function setname($name) {
-        $this->id = $name;
+        $this->name = $name;
     }
 
     public function getletter() {
@@ -225,7 +328,7 @@ class section {
     }
 
     public function setletter($letter) {
-        $this->id = $letter;
+        $this->letter = $letter;
     }
 
     public function getcontent() {
@@ -233,7 +336,7 @@ class section {
     }
 
     public function setcontent($content) {
-        $this->id = $content;
+        $this->content = $content;
     }
 
     public function getlessonID() {
@@ -241,9 +344,15 @@ class section {
     }
 
     public function lessonID($lessonID) {
-        $this->id = $lessonID;
+        $this->lessonID = $lessonID;
     }
 
 }
+
+
+
+    
+
+
 
 ?>

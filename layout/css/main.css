@@ -6,7 +6,7 @@
     justify-content: center;
     align-items: center;
     align-content: center;
-     justify-content: space-around;
+    justify-content: space-around;
 }
 body {
     margin: 0;
@@ -25,7 +25,7 @@ body {
     display: flex;
     margin-left: auto;
     margin-right: auto;
-    
+
 }
 
 /* Create three equal columns that sits next to each other */
@@ -33,7 +33,7 @@ body {
     -webkit-flex: 1;
     -ms-flex: 1;
     flex: 1;
-    padding-left: 30px;    
+    padding-left: 80px;    
     height: 300px; /* Should be removed. Only for demonstration */
     align-self: center
 }
@@ -47,7 +47,7 @@ body {
     bottom: 0;
     width: 100%;
     text-align: center;
-    
+
 
 }
 
@@ -88,38 +88,24 @@ h3:first-child{
     align-items: center;
 
 }
-.makecourse {
-    height: 50px;
-    width: 140px;
-    max-width: 140px;
-    margin-right: 5px;
-    border-radius: 4px;
-    background-color: steelblue;
-    border: none;
-    color: #FFFFFF;
-    margin-bottom: 100px;
-}
 
-.viewcourse {
-    height: 50px;
-    width: 140px;
-    max-width: 140px;
-    border-radius: 4px;
-    background-color: steelblue;
-    border: none;
-    color: #FFFFFF;
-    margin-bottom: 100px;
-
-}
 .mainfooter {
 
     margin-bottom: 0px;
     margin-top: 40px;
-    
+
 }
 .mainfooter h3{
 
     text-align: center;
     font-size: 12px;
 
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+a:first-child{
+    float: left;
 }
