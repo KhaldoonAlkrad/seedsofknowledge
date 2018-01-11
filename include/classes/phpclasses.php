@@ -181,11 +181,11 @@ class course {
 
     public $id;
     public $name;
-    public $desc;
+    public $description;
 
-    public function __construct($name, $desc) {
+    public function __construct($name, $description) {
         $this->name = $name;
-        $this->desc = $desc;
+        $this->description = $description;
     }
 
     public function getid() {
@@ -204,12 +204,77 @@ class course {
         $this->name = $name;
     }
 
-    public function getdesc() {
-        return $this->desc;
+    public function getdescription() {
+        return $this->description;
     }
 
-    public function setdesc($desc) {
-        $this->desc = $desc;
+    public function setdescription($description) {
+        $this->description = $description;
+    }
+
+    public function checkcourse() {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST["name"])) {
+                $this->setname(test_input($_POST["name"]));
+                if ($this->name == "") {
+                    return "Course name can not be empty <br>";
+                }
+            }
+            if (isset($_POST["description"])) {
+                $this->setdescription(test_input($_POST["description"]));
+                if ($this->description == "") {
+                    return "description can not be empty <br>";
+                }
+            }
+        }
+
+        if ($this->checkifcourseexist() == false) {
+            $this->addcourse();
+        } else {
+            return "course is al ready exist! Please choose another name";
+        }
+    }
+
+    public function checkifcourseexist() {
+        $sql = "SELECT * FROM `course` WHERE `name`='$this->name'";
+        $connection = new Database();
+        $result = $connection->conn->query($sql);
+        if ($result->num_rows >= 1) {
+            $connection->conn->close();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function addcourse() {
+        $sql = "INSERT INTO `course`(`name`, `description`) VALUES";
+        $sql .= " ('$this->name','$this->description')";
+        $connection = new Database();
+        $connection->conn->query($sql);
+        $connection->conn->close();
+    }
+
+    static public function showcourse() {
+        $sql = "SELECT * FROM `course`";
+        $connection = new Database();
+        $result = $connection->conn->query($sql);
+        echo "<table id=course-table>";
+        echo "<tr>";
+        echo "<th>Name</th>";
+        echo "<th>Description</th>";
+        echo "</tr>";
+        for ($x = 0; $x < $result->num_rows; $x++) {
+            $row = $result->fetch_assoc();
+
+            echo "<tr>";
+            echo "<td>" . $row['name'] . "</td>";
+            echo "<td>" . $row['description'] . "</td>";
+            echo "<td>verwijder</td>";
+            echo "</tr>";
+        }
+        echo "</table>";
+        $connection->conn->close();
     }
 
 }
