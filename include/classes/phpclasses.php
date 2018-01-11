@@ -260,23 +260,27 @@ class course {
         $connection = new Database();
         $result = $connection->conn->query($sql);
         echo "<table id=course-table>";
+        echo "<colgroup>";
+        echo "<col>";
+        echo "<col>";
+        echo "<col>";
+        echo "</colgroup>";
         echo "<tr>";
-        echo "<th>Name</th>";
-        echo "<th>Description</th>";
+        echo "<th>Course Name</th>";
+        echo "<th>Course Description</th>";
+        echo "<th>Delete</th>";
         echo "</tr>";
         for ($x = 0; $x < $result->num_rows; $x++) {
             $row = $result->fetch_assoc();
-
             echo "<tr>";
             echo "<td>" . $row['name'] . "</td>";
             echo "<td>" . $row['description'] . "</td>";
-            echo "<td>verwijder</td>";
+            echo "<td><button class='glyphicon glyphicon-trash' id=cousredelete title=Delete></button></td>";
             echo "</tr>";
-        }
+           }
         echo "</table>";
         $connection->conn->close();
     }
-
 }
 
 //////////////////////subcourse

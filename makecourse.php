@@ -17,25 +17,26 @@ if (isset($_SESSION["name"]) && $_SESSION["name"] != "") {
     <div id="makecourse-course">
 
         <div id="makecourse-course-inputs">
-            <form action="makecourse.php" method="POST">
+            <form id="course" action="makecourse.php" method="POST">
                 <div class="course-inputs">
                     <input id="cousrename" type="text" name="name" placeholder="Course Name">
                     <input id="coursedesc" type="text" name="description" placeholder="Course Description">
+                    <input id="cousreoperatopn" type="hidden" name="operation" value="">
                 </div>
                 <div class="course-buttons">
-                    <button  class="glyphicon glyphicon-repeat" id="cousreclear" title="Clear"></button>
+                    <button type="reset"  class="glyphicon glyphicon-repeat" id="cousreclear" title="Clear"></button>
                     <?php
+                    $msg="";
                     $course = new course("", "", "");
                     $msg = $course->checkcourse();
                     ?>
-                    <button type="submit" id="cousreadd" class=" glyphicon glyphicon-plus" title="Add">
-
-                    </button>
-                    <button id="cousreedit" class="glyphicon glyphicon-pencil" title="Edit"></button>
-                    <button class="glyphicon glyphicon-trash" id="cousredelete" title="Delete"></button>
+                    <button id="cousreadd" class=" glyphicon glyphicon-plus" title="Add"></button>
+<!--                    <button id="cousreedit" class="glyphicon glyphicon-pencil" title="Edit"></button>-->
+          
+                    
                     <span class=error>
                         <?php
-                        if (isset($msg)) {
+                        if (isset($msg)!="") {
                             echo $msg;
                         }
                         ?></span> 
@@ -43,7 +44,10 @@ if (isset($_SESSION["name"]) && $_SESSION["name"] != "") {
             </form>
         </div>
 
-        <div id="makecourse-course-table"></div>
+        <div id="makecourse-course-table">
+            
+            <?php course::showcourse();?>
+        </div>
     </div>
 
 
