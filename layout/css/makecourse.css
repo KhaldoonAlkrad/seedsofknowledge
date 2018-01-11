@@ -1,0 +1,56 @@
+.makecourse-container{
+    margin-left: auto;
+    margin-right: auto;
+}
+.course-inputs, .course-buttons{
+    display: inline;
+    
+}
+.course-inputs input[type=text]{
+    margin-left: 5px;
+    width: 400px;
+    display: inline;
+    border-radius: 5px;
+}
+
+.course-buttons button {
+    background-color: steelblue;
+    color: white;
+    margin: 0px;
+    border: none;
+    cursor: pointer;
+    width: 50px;
+    display: inline;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 2px;
+    height: 45px;
+  
+ 
+    
+}
+
+#coursedesc {
+    width: 800px;
+    
+}
+
+#cousredelete{
+    
+    background-color:red;
+}
+
+#cousreadd{
+    background-color:rgb(144, 189, 119);
+    
+}
+#cousreclear{
+    
+    background-color: steelblue;
+
+    
+}
+
+#cousreedit{
+    
+}

@@ -14,10 +14,12 @@ and open the template in the editor.
         <title> Seeds of Knowledge</title>
         <link rel="shortcut icon" type="image/x-icon" href="<?php echo $img; ?>favicon.ico" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="<?php echo $css; ?>main.css">
         <link rel="stylesheet" type="text/css" href="<?php echo $css; ?>login.css">
         <link rel="stylesheet" type="text/css" href="<?php echo $css; ?>register.css">
         <link rel="stylesheet" type="text/css" href="<?php echo $css; ?>template.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo $css; ?>makecourse.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
