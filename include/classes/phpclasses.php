@@ -275,7 +275,7 @@ class course {
             echo "<tr>";
             echo "<td>" . $row['name'] . "</td>";
             echo "<td>" . $row['description'] . "</td>";
-            echo "<td><button class='glyphicon glyphicon-trash' id=cousredelete title=Delete></button></td>";
+            echo "<td><button onclick=del(".$row['id'].") class='glyphicon glyphicon-trash' id=cousredelete title=Delete></button></td>";
             echo "</tr>";
            }
         echo "</table>";
