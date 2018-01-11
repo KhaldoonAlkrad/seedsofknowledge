@@ -6,6 +6,7 @@ include $tem . 'header.php';
     if (isset($_SESSION["name"]) && $_SESSION["name"] != "") {
     
         include $tem . 'loginnav.php';
+         header("location: makecourse.php");
     } else {
         include $tem . 'nav.php';
     }

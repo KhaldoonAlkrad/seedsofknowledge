@@ -138,12 +138,12 @@ class user {
 
     public function signin() {
 
-        $sql = "SELECT * FROM `user` WHERE `email`= '$this->email' AND `password`= '$this->password'";
+        $sql = "SELECT * FROM `user` WHERE `email`= BINARY '$this->email' AND `password`= BINARY '$this->password'";
         $connection = new Database();
         $result = $connection->conn->query($sql);
         if (isset($result)) {
             if ($result->num_rows <= 0) {
-                return "username or password does not match";
+                return "email or password does not match";
             } else {
                 session_start();
                 $row = $result->fetch_assoc();

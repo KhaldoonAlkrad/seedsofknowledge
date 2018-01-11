@@ -9,7 +9,7 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="description" content="Make a new courses">
         <meta name="keywords" content="course, new course">
-        <meta name="author" content="">
+        <meta name="author" content="Hassan, Jeanine, Anne-Marije, Khaldoon ">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title> Seeds of Knowledge</title>
         <link rel="shortcut icon" type="image/x-icon" href="<?php echo $img; ?>favicon.ico" />
