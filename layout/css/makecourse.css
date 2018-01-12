@@ -70,7 +70,7 @@
 #course-table {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 1210px;
+    width: 1625px;
     margin-left: 10px;
     
 }
@@ -93,12 +93,19 @@
      border-radius: 2px;
 }
  col:first-child {
-   width:400px;
+   width:450px;
 }
+col:nth-child(2){
+     width:450px;
+}
+#thirdcol{
+     width:800px;
+}
+
 
 col:last-child {
   
-   width:80px;
+   width:100px;
    
 }
 #course-table tr td button {
@@ -113,3 +120,6 @@ col:last-child {
     height: 45px;
 }
 
+#makecourse-course-table{
+    margin-top: 10px;
+}

@@ -345,7 +345,7 @@ class subcourse {
             if (isset($_POST["name"])) {
                 $this->setname(test_input($_POST["name"]));
                 if ($this->name == "") {
-                    return "subcourse name can not be empty <br>";
+                    return "Subcourse name can not be empty <br>";
                 }
             }
             if (isset($_POST["description"])) {
@@ -390,16 +390,18 @@ class subcourse {
         $connection->conn->close();
     }
         static public function showsubcourses() {
-        $sql = "SELECT * FROM `subcourse`";
+        $sql = "SELECT course.name as course, subcourse.name, subcourse.description, subcourse.id  FROM `subcourse`, `course` WHERE subcourse.courseID=course.id ";
         $connection = new Database();
         $result = $connection->conn->query($sql);
         echo "<table id=course-table>";
         echo "<colgroup>";
         echo "<col>";
         echo "<col>";
+        echo "<col id='thirdcol'>";
         echo "<col>";
         echo "</colgroup>";
         echo "<tr>";
+        echo "<th>Course Name</th>";
         echo "<th>Subcourse Name</th>";
         echo "<th>Subcourse Description</th>";
         echo "<th>Delete</th>";
@@ -407,6 +409,7 @@ class subcourse {
         for ($x = 0; $x < $result->num_rows; $x++) {
             $row = $result->fetch_assoc();
             echo "<tr>";
+            echo "<td>" . $row['course'] . "</td>";
             echo "<td>" . $row['name'] . "</td>";
             echo "<td>" . $row['description'] . "</td>";
             echo "<td><button onclick=deletesubcourse(".$row['id'].") class='glyphicon glyphicon-trash' id=cousredelete title=Delete></button></td>";

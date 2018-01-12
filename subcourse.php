@@ -19,6 +19,7 @@ if (isset($_SESSION["name"]) && $_SESSION["name"] != "") {
         <div id="makecourse-course-inputs">
             <form id="course" action="subcourse.php" method="POST">
                 <div class="course-inputs">
+                    <br>
                     <?php subcourse::optioncourse(); ?>
                     <input id="cousrename" type="text" name="name" placeholder="Subcourse Name">
                     <input id="coursedesc" type="text" name="description" placeholder="Subcourse Description">
@@ -41,6 +42,7 @@ if (isset($_SESSION["name"]) && $_SESSION["name"] != "") {
                     <span class=error>
                         <?php
                         if (isset($msg)) {
+                            echo '<br>&nbsp;&nbsp;&nbsp;&nbsp;';
                             echo $msg;
                         }
                         ?></span> 

@@ -40,6 +40,7 @@ if (isset($_SESSION["name"]) && $_SESSION["name"] != "") {
                     <span class=error>
                         <?php
                         if (isset($msg)) {
+                            echo "<br>&nbsp;&nbsp;&nbsp;&nbsp;";
                             echo $msg;
                         }
                         ?></span> 
