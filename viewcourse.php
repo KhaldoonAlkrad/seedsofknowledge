@@ -11,3 +11,12 @@ if (isset($_SESSION["name"]) && $_SESSION["name"] != "") {
     header("location: login.php");
 }
 ?>
+
+<div>
+    <div id="course-list">
+        <?php course::showcourselist(); ?>
+    </div>
+    <div>
+
+    </div>
+</div>

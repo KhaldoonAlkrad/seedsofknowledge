@@ -1,5 +1,5 @@
 <div class="header">
-    <nav class="container-fluid text-center">
+    <nav id="mainnav" class="container-fluid text-center">
         <a href="index.php"><span class="glyphicon glyphicon-home" ></span> Home &nbsp;</a>
         <a href="makecourse.php"><span class="glyphicon glyphicon-list-alt " ></span> Course &nbsp;</a>
         <a href="subcourse.php"><span class="glyphicon glyphicon-list-alt " ></span> Subcourse &nbsp;</a>
@@ -20,4 +20,4 @@
         <h1>Seeds of Knowledge</h1>
     </header>
 
-</div>
+</div> 

@@ -26,18 +26,22 @@ if (isset($_SESSION["name"]) && $_SESSION["name"] != "") {
                 <div class="course-buttons">
                     <button type="reset"  class="glyphicon glyphicon-repeat" id="cousreclear" title="Clear"></button>
                     <?php
-                    $msg="";
+                    $msg = "";
                     $course = new course("", "", "");
-                    $msg = $course->checkcourse();
+                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                        $msg = "";
+                        $msg = $course->checkcourse();
+                        $_POST = array();                        
+                    }
                     ?>
-                    <button id="cousreadd" class=" glyphicon glyphicon-plus" title="Add"></button>
-<!--                    <button id="cousreedit" class="glyphicon glyphicon-pencil" title="Edit"></button>-->
-          
-                    
+                    <button type="submit" id="cousreadd" class=" glyphicon glyphicon-plus" title="Add"></button>
+                    <!--                    <button id="cousreedit" class="glyphicon glyphicon-pencil" title="Edit"></button>-->
+
                     <span class=error>
                         <?php
-                        if (isset($msg)!="") {
+                        if (isset($msg)) {
                             echo $msg;
+                          
                         }
                         ?></span> 
                 </div>
@@ -45,8 +49,8 @@ if (isset($_SESSION["name"]) && $_SESSION["name"] != "") {
         </div>
 
         <div id="makecourse-course-table">
-            
-            <?php course::showcourse();?>
+
+            <?php course::showcourse(); ?>
         </div>
     </div>
 

@@ -275,10 +275,21 @@ class course {
             echo "<tr>";
             echo "<td>" . $row['name'] . "</td>";
             echo "<td>" . $row['description'] . "</td>";
-            echo "<td><button onclick=del(".$row['id'].") class='glyphicon glyphicon-trash' id=cousredelete title=Delete></button></td>";
+            echo "<td><button onclick=del(".$row['id'].")  class='glyphicon glyphicon-trash' id=cousredelete title=Delete></button></td>";
             echo "</tr>";
            }
         echo "</table>";
+        $connection->conn->close();
+    }
+    
+     static public function showcourselist() {
+        $sql = "SELECT * FROM `course`";
+        $connection = new Database();
+        $result = $connection->conn->query($sql);
+        for ($x = 0; $x < $result->num_rows; $x++) {
+            $row = $result->fetch_assoc();
+            echo "<a class=courselist-a>" . $row['name'] . "</a>";
+          }
         $connection->conn->close();
     }
 }
