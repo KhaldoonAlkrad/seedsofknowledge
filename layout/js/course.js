@@ -5,6 +5,6 @@ $(document).ready(function () {
 });
 
 function del(id) {
-    window.location.href = "delete.php?id=" + id;
+    window.location.href = "deletecourse.php?id=" + id;
 }
 
