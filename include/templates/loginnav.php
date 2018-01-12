@@ -17,7 +17,7 @@
 
     </nav>
     <header class="jumbotron text-center">
-        <h1>Seeds of Knowledge</h1>
+        <h1 id="mainheader">Seeds of Knowledge</h1>
     </header>
 
 </div> 

@@ -29,6 +29,16 @@
  
     
 }
+.course-inputs select {
+   
+  
+  margin-left: 5px;
+    width: 400px;
+    display: inline;
+    border-radius: 5px;
+    height: 45px;
+    
+}
 
 #coursedesc {
     width: 800px;

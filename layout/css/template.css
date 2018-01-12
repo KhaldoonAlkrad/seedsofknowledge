@@ -23,3 +23,10 @@
 #mainnav a:hover{
     text-decoration: none;
 }
+
+#mainheader{
+    color: steelblue;
+    font-family: 'Old Standard TT', serif;
+    letter-spacing: 6px;
+    
+}

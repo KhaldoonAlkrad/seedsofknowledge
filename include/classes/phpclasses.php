@@ -299,12 +299,13 @@ class subcourse {
 
     public $id;
     public $name;
-    public $desc;
+    public $description;
     public $courseID;
 
-    public function __construct($name, $desc) {
+    public function __construct($name, $description,$courseID) {
         $this->name = $name;
-        $this->desc = $desc;
+        $this->description = $description;
+        $this->courseID=$courseID;
     }
 
     public function getid() {
@@ -323,12 +324,12 @@ class subcourse {
         $this->name = $name;
     }
 
-    public function getdesc() {
-        return $this->email;
+    public function getdescription() {
+        return $this->description;
     }
 
-    public function setdesc($email) {
-        $this->email = $email;
+    public function setdescription($description) {
+        $this->description = $description;
     }
 
     public function getcourseID() {
@@ -338,6 +339,96 @@ class subcourse {
     public function setcourseID($courseID) {
         $this->courseID = $courseID;
     }
+    
+    public function checksubcourse() {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST["name"])) {
+                $this->setname(test_input($_POST["name"]));
+                if ($this->name == "") {
+                    return "subcourse name can not be empty <br>";
+                }
+            }
+            if (isset($_POST["description"])) {
+                $this->setdescription(test_input($_POST["description"]));
+                if ($this->description == "") {
+                    return "Description can not be empty <br>";
+                }
+            }
+            if (isset($_POST["courseID"])) {
+                $this->setcourseID(test_input($_POST["courseID"]));
+              
+                if ($this->courseID == "") {
+                    return "Course ID can not be empty <br>";
+                }
+            }
+        }
+
+        if ($this->checkifsubcourseexist() == false) {
+            $this->addsubcourse();
+        } else {
+            return "Subcourse already exists! Please choose another name";
+        }
+    }
+    
+        public function checkifsubcourseexist() {
+        $sql = "SELECT * FROM `subcourse` WHERE `name`='$this->name'";
+        $connection = new Database();
+        $result = $connection->conn->query($sql);
+        if ($result->num_rows >= 1) {
+            $connection->conn->close();
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+        public function addsubcourse() {
+        $sql = "INSERT INTO `subcourse`(`name`, `description`,`courseID`) VALUES";
+        $sql .= " ('$this->name','$this->description','$this->courseID')";
+        $connection = new Database();
+        $connection->conn->query($sql);
+        $connection->conn->close();
+    }
+        static public function showsubcourses() {
+        $sql = "SELECT * FROM `subcourse`";
+        $connection = new Database();
+        $result = $connection->conn->query($sql);
+        echo "<table id=course-table>";
+        echo "<colgroup>";
+        echo "<col>";
+        echo "<col>";
+        echo "<col>";
+        echo "</colgroup>";
+        echo "<tr>";
+        echo "<th>Subcourse Name</th>";
+        echo "<th>Subcourse Description</th>";
+        echo "<th>Delete</th>";
+        echo "</tr>";
+        for ($x = 0; $x < $result->num_rows; $x++) {
+            $row = $result->fetch_assoc();
+            echo "<tr>";
+            echo "<td>" . $row['name'] . "</td>";
+            echo "<td>" . $row['description'] . "</td>";
+            echo "<td><button onclick=deletesubcourse(".$row['id'].") class='glyphicon glyphicon-trash' id=cousredelete title=Delete></button></td>";
+            echo "</tr>";
+           }
+        echo "</table>";
+        $connection->conn->close();
+    }
+    
+        static public function optioncourse() {
+        $sql = "SELECT * FROM `course`";
+        $connection = new Database();
+        $result = $connection->conn->query($sql);
+        echo "<select name='courseID'>";     
+        for ($x = 0; $x < $result->num_rows; $x++) {
+            $row = $result->fetch_assoc();
+            echo "<option value=".$row['id'].">".$row['name']."</option>";
+           }
+        echo "</select>";
+        $connection->conn->close();
+    }
+
 
 }
 

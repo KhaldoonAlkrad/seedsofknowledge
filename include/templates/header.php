@@ -15,6 +15,7 @@ and open the template in the editor.
         <link rel="shortcut icon" type="image/x-icon" href="<?php echo $img; ?>favicon.ico" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
         <link rel="stylesheet" type="text/css" href="<?php echo $css; ?>main.css">
         <link rel="stylesheet" type="text/css" href="<?php echo $css; ?>login.css">
         <link rel="stylesheet" type="text/css" href="<?php echo $css; ?>register.css">
@@ -24,6 +25,7 @@ and open the template in the editor.
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="layout/js/course.js"></script>
+        <script type="text/javascript" src="layout/js/subcourse.js"></script>
     </head>
     <body>
         

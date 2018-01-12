@@ -31,7 +31,7 @@ if (isset($_SESSION["name"]) && $_SESSION["name"] != "") {
                     if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $msg = "";
                         $msg = $course->checkcourse();
-                        $_POST = array();                        
+                        $_POST = array();
                     }
                     ?>
                     <button type="submit" id="cousreadd" class=" glyphicon glyphicon-plus" title="Add"></button>
@@ -41,7 +41,6 @@ if (isset($_SESSION["name"]) && $_SESSION["name"] != "") {
                         <?php
                         if (isset($msg)) {
                             echo $msg;
-                          
                         }
                         ?></span> 
                 </div>
@@ -53,50 +52,6 @@ if (isset($_SESSION["name"]) && $_SESSION["name"] != "") {
             <?php course::showcourse(); ?>
         </div>
     </div>
-
-
-    <div id="makecourse-subcourse">
-
-        <div id="makecourse-subcourse-inputs">
-
-
-        </div>
-
-        <div id="makecourse-subcourse-table">
-
-
-        </div>
-    </div>
-
-    <div id="makecourse-lesson">
-
-        <div id="makecourse-lesson-inputs">
-
-
-        </div>
-
-        <div id="makecourse-lesson-table">
-
-
-        </div>
-    </div>
-
-    <div id="makecourse-section">
-
-        <div id="makecourse-section-inputs">
-
-
-        </div>
-
-        <div id="makecourse-section-inputs">
-
-
-        </div>
-    </div>
-
-
-
-
 </div>
 
 
