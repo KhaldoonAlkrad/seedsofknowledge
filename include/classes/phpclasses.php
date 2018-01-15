@@ -276,7 +276,7 @@ class course {
         $sql = "SELECT course.name, course.description, course.id ";
         $sql .= " FROM `course`,`courseuser`";
         $sql .= " WHERE courseuser.userID=$userID AND course.id=courseuser.courseID";
-        $sql.=" ORDER BY course.name ASC ";
+        $sql .= " ORDER BY course.name ASC ";
         $connection = new Database();
         $result = $connection->conn->query($sql);
         echo "<table id=course-table>";
@@ -307,7 +307,7 @@ class course {
         $sql = "SELECT course.name, course.description, course.id ";
         $sql .= " FROM `course`,`courseuser`";
         $sql .= " WHERE courseuser.userID=$userID AND course.id=courseuser.courseID";
-         $sql.=" ORDER BY course.name ASC ";
+        $sql .= " ORDER BY course.name ASC ";
         $connection = new Database();
         $result = $connection->conn->query($sql);
         for ($x = 0; $x < $result->num_rows; $x++) {
@@ -417,8 +417,8 @@ class subcourse {
 
     static public function showsubcourses() {
         $sql = "SELECT course.name AS course, subcourse.name, subcourse.description, subcourse.id";
-        $sql.= " FROM `subcourse`, `course`";
-        $sql.= " WHERE subcourse.courseID=course.id ";
+        $sql .= " FROM `subcourse`, `course`";
+        $sql .= " WHERE subcourse.courseID=course.id ";
         $sql .= " ORDER BY course.name ASC, subcourse.name ASC ";
         $connection = new Database();
         $result = $connection->conn->query($sql);
@@ -453,7 +453,7 @@ class subcourse {
         $sql = "SELECT course.name, course.description, course.id ";
         $sql .= " FROM `course`,`courseuser`";
         $sql .= " WHERE courseuser.userID=$userID AND course.id=courseuser.courseID";
-         $sql.=" ORDER BY course.name ASC ";
+        $sql .= " ORDER BY course.name ASC ";
         $connection = new Database();
         $result = $connection->conn->query($sql);
         echo "<select name='courseID'>";
@@ -470,7 +470,7 @@ class subcourse {
         $sql = "SELECT course.name, course.description, course.id ";
         $sql .= " FROM `course`,`courseuser`";
         $sql .= " WHERE courseuser.userID=$userID AND course.id=courseuser.courseID";
-         $sql.=" ORDER BY course.name ASC ";
+        $sql .= " ORDER BY course.name ASC ";
         $connection = new Database();
         $result = $connection->conn->query($sql);
 
@@ -560,13 +560,13 @@ class lesson {
         $connection->conn->query($sql);
         $connection->conn->close();
     }
-    
-     static public function showlessons() {
+
+    static public function showlessons() {
         $userID = $_SESSION['userID'];
         $sql = "SELECT subcourse.name as subcourse, lesson.name, lesson.description, lesson.id ";
         $sql .= " FROM `lesson`,`subcourse`,`course`,`courseuser`";
         $sql .= " WHERE courseuser.userID=$userID AND course.id=courseuser.courseID AND subcourse.courseID=course.id AND lesson.subcourseID=subcourse.id";
-        $sql.=" ORDER BY subcourse.name ASC, lesson.name ASC ";
+        $sql .= " ORDER BY subcourse.name ASC, lesson.name ASC ";
         $connection = new Database();
         $result = $connection->conn->query($sql);
         echo "<table id=course-table>";
@@ -600,7 +600,7 @@ class lesson {
         $sql = "SELECT subcourse.name, subcourse.description, subcourse.id ";
         $sql .= " FROM `subcourse`,`course`,`courseuser`";
         $sql .= " WHERE courseuser.userID=$userID AND course.id=courseuser.courseID AND subcourse.courseID=course.id";
-        $sql.=" ORDER BY subcourse.name ASC";
+        $sql .= " ORDER BY subcourse.name ASC";
         $connection = new Database();
         $result = $connection->conn->query($sql);
         echo "<select name='subcourseID'>";
@@ -619,14 +619,14 @@ class section {
 
     public $id;
     public $name;
-    public $letter;
     public $content;
+    public $letter;
     public $lessonID;
 
-    public function __construct($name, $letter, $content) {
+    public function __construct($name, $content, $letter) {
         $this->name = $name;
-        $this->desc = $letter;
-        $this->name = $content;
+        $this->content = $content;
+        $this->letter = $letter;
     }
 
     public function getid() {
@@ -645,14 +645,6 @@ class section {
         $this->name = $name;
     }
 
-    public function getletter() {
-        return $this->letter;
-    }
-
-    public function setletter($letter) {
-        $this->letter = $letter;
-    }
-
     public function getcontent() {
         return $this->content;
     }
@@ -661,12 +653,118 @@ class section {
         $this->content = $content;
     }
 
+    public function getletter() {
+        return $this->letter;
+    }
+
+    public function setletter($letter) {
+        $this->letter = $letter;
+    }
+
     public function getlessonID() {
         return $this->lessonID;
     }
 
-    public function lessonID($lessonID) {
+    public function setlessonID($lessonID) {
         $this->lessonID = $lessonID;
+    }
+
+    public function checksection() {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST["name"])) {
+                $this->setname(test_input($_POST["name"]));
+                if ($this->name == "") {
+                    return "section name can not be empty <br>";
+                }
+            }
+            if (isset($_POST["content"])) {
+                $this->setcontent(test_input($_POST["content"]));
+                if ($this->content == "") {
+                    return "Content can not be empty <br>";
+                }
+            }
+
+            if (isset($_POST["letter"])) {
+                $this->setletter(test_input($_POST["letter"]));
+
+                if ($this->letter == "") {
+                    return "Letter can not be empty <br>";
+                }
+            }
+            if (isset($_POST["lessonID"])) {
+                $this->setlessonID(test_input($_POST["lessonID"]));
+
+                if ($this->lessonID == "") {
+                    return "Lesson ID can not be empty <br>";
+                }
+            }
+
+            $this->addsection();
+        }
+    }
+
+    public function addsection() {
+        $sql = "INSERT INTO `section`(`name`, `content`,`letter`,`lessonID`) VALUES";
+        $sql .= " ('$this->name','$this->content','$this->letter','$this->lessonID')";
+        $connection = new Database();
+        $connection->conn->query($sql);
+        $connection->conn->close();
+    }
+
+    static public function optionlesson() {
+        $userID = $_SESSION['userID'];
+        $sql = "SELECT lesson.name, lesson.id ";
+        $sql .= " FROM `lesson`,`subcourse`,`course`,`courseuser`";
+        $sql .= " WHERE courseuser.userID=$userID AND course.id=courseuser.courseID";
+        $sql .= " AND subcourse.courseID=course.id AND lesson.subcourseID=subcourse.id";
+        $sql .= " ORDER BY lesson.name ASC";
+        $connection = new Database();
+        $result = $connection->conn->query($sql);
+        echo "<select name='lessonID'>";
+        for ($x = 0; $x < $result->num_rows; $x++) {
+            $row = $result->fetch_assoc();
+            echo "<option value=" . $row['id'] . ">" . $row['name'] . "</option>";
+        }
+        echo "</select>";
+        $connection->conn->close();
+    }
+
+    static public function showsections() {
+        $userID = $_SESSION['userID'];
+        $sql = "SELECT subcourse.name AS subcourse, lesson.name AS lesson, section.name AS section,section.letter AS letter, section.id ";
+        $sql .= " FROM `section`,`lesson`,`subcourse`,`course`,`courseuser`";
+        $sql .= " WHERE courseuser.userID=$userID AND course.id=courseuser.courseID AND subcourse.courseID=course.id";
+        $sql .= " AND lesson.subcourseID=subcourse.id AND section.lessonID=lesson.id";
+        $sql .= " ORDER BY subcourse.name ASC, lesson.name ASC, section.letter ASC ";
+        $connection = new Database();
+        $result = $connection->conn->query($sql);
+        echo "<table id=course-table>";
+        echo "<colgroup>";
+        echo "<col>";
+        echo "<col>";
+        echo "<col>";
+        echo "<col id='thirdcol'>";
+        echo "<col>";
+        echo "</colgroup>";
+        echo "<tr>";
+        echo "<th>Subcourse Name</th>";
+        echo "<th>Lesson Name</th>";
+        echo "<th>Section Letter</th>";
+        echo "<th>Section Title</th>";
+        echo "<th>Delete</th>";
+        echo "</tr>";
+        for ($x = 0; $x < $result->num_rows; $x++) {
+            $row = $result->fetch_assoc();
+            echo "<tr>";
+            echo "<td>" . $row['subcourse'] . "</td>";
+            echo "<td>" . $row['lesson'] . "</td>";
+            echo "<td>" . $row['letter'] . "</td>";
+            echo "<td>" . $row['section'] . "</td>";
+            echo "<td><button onclick=deletesection(" . $row['id'] . ") class='glyphicon glyphicon-trash' id=cousredelete title=Delete></button></td>";
+            echo "</tr>";
+        }
+        echo "</table>";
+        $connection->conn->close();
     }
 
 }
