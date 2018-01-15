@@ -458,15 +458,15 @@ class subcourse {
         echo "</select>";
         $connection->conn->close();
     }
-    
-     static public function showsubcourselist() {
+
+    static public function showsubcourselist() {
         $userID = $_SESSION['userID'];
         $sql = "SELECT course.name, course.description, course.id ";
         $sql .= " FROM `course`,`courseuser`";
         $sql .= " WHERE courseuser.userID=$userID AND course.id=courseuser.courseID";
         $connection = new Database();
         $result = $connection->conn->query($sql);
-        
+
         for ($x = 0; $x < $result->num_rows; $x++) {
             $row = $result->fetch_assoc();
             echo "<a class=courselist-a>" . $row['name'] . "</a>";
@@ -481,12 +481,12 @@ class lesson {
 
     public $id;
     public $name;
-    public $desc;
+    public $description;
     public $subcourseID;
 
-    public function __construct($name, $desc) {
+    public function __construct($name, $description) {
         $this->name = $name;
-        $this->desc = $desc;
+        $this->description = $description;
     }
 
     public function getid() {
@@ -505,12 +505,12 @@ class lesson {
         $this->name = $name;
     }
 
-    public function getdesc() {
-        return $this->desc;
+    public function getdescription() {
+        return $this->description;
     }
 
-    public function setdesc($desc) {
-        $this->desc = $desc;
+    public function setdescription($description) {
+        $this->description = $description;
     }
 
     public function getsubcourseID() {
@@ -520,9 +520,87 @@ class lesson {
     public function setsubcourseID($subcourseID) {
         $this->subcourseID = $subcourseID;
     }
+
+    public function checklesson() {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST["name"])) {
+                $this->setname(test_input($_POST["name"]));
+                if ($this->name == "") {
+                    return "lesson name can not be empty <br>";
+                }
+            }
+            if (isset($_POST["description"])) {
+                $this->setdescription(test_input($_POST["description"]));
+                if ($this->description == "") {
+                    return "Description can not be empty <br>";
+                }
+            }
+            if (isset($_POST["subcourseID"])) {
+                $this->setsubcourseID(test_input($_POST["subcourseID"]));
+
+                if ($this->subcourseID == "") {
+                    return "Subcourse ID can not be empty <br>";
+                }
+            }
+        }
+        $this->addlesson();
+    }
+
+    public function addlesson() {
+        $sql = "INSERT INTO `lesson`(`name`, `description`,`subcourseID`) VALUES";
+        $sql .= " ('$this->name','$this->description','$this->subcourseID')";
+        $connection = new Database();
+        $connection->conn->query($sql);
+        $connection->conn->close();
+    }
     
-    public function optionsubcourse(){
-        
+     static public function showlessons() {
+        $userID = $_SESSION['userID'];
+        $sql = "SELECT subcourse.name as subcourse, lesson.name, lesson.description, lesson.id ";
+        $sql .= " FROM `lesson`,`subcourse`,`course`,`courseuser`";
+        $sql .= " WHERE courseuser.userID=$userID AND course.id=courseuser.courseID AND subcourse.courseID=course.id AND lesson.subcourseID=subcourse.id";
+        $connection = new Database();
+        $result = $connection->conn->query($sql);
+        echo "<table id=course-table>";
+        echo "<colgroup>";
+        echo "<col>";
+        echo "<col>";
+        echo "<col id='thirdcol'>";
+        echo "<col>";
+        echo "</colgroup>";
+        echo "<tr>";
+        echo "<th>Subcourse Name</th>";
+        echo "<th>Lesson Name</th>";
+        echo "<th>Lesson Description</th>";
+        echo "<th>Delete</th>";
+        echo "</tr>";
+        for ($x = 0; $x < $result->num_rows; $x++) {
+            $row = $result->fetch_assoc();
+            echo "<tr>";
+            echo "<td>" . $row['subcourse'] . "</td>";
+            echo "<td>" . $row['name'] . "</td>";
+            echo "<td>" . $row['description'] . "</td>";
+            echo "<td><button onclick=deletelesson(" . $row['id'] . ") class='glyphicon glyphicon-trash' id=cousredelete title=Delete></button></td>";
+            echo "</tr>";
+        }
+        echo "</table>";
+        $connection->conn->close();
+    }
+
+    static public function optionsubcourse() {
+        $userID = $_SESSION['userID'];
+        $sql = "SELECT subcourse.name, subcourse.description, subcourse.id ";
+        $sql .= " FROM `subcourse`,`course`,`courseuser`";
+        $sql .= " WHERE courseuser.userID=$userID AND course.id=courseuser.courseID AND subcourse.courseID=course.id";
+        $connection = new Database();
+        $result = $connection->conn->query($sql);
+        echo "<select name='subcourseID'>";
+        for ($x = 0; $x < $result->num_rows; $x++) {
+            $row = $result->fetch_assoc();
+            echo "<option value=" . $row['id'] . ">" . $row['name'] . "</option>";
+        }
+        echo "</select>";
+        $connection->conn->close();
     }
 
 }
