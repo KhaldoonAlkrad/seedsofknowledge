@@ -312,7 +312,11 @@ class course {
         $result = $connection->conn->query($sql);
         for ($x = 0; $x < $result->num_rows; $x++) {
             $row = $result->fetch_assoc();
-            echo "<a class=courselist-a>" . $row['name'] . "</a>";
+            $courseID=$row['id'];
+            echo "<div id=$courseID onclick=showsubcourses($courseID)>" . $row['name'] . "</div>";
+            echo '<div id=subcourse'.$courseID.'>';
+            subcourse::showsubcourselist($courseID);
+            echo '</div>';
         }
         $connection->conn->close();
     }
@@ -465,12 +469,13 @@ class subcourse {
         $connection->conn->close();
     }
 
-    static public function showsubcourselist() {
+    static public function showsubcourselist($courseID) {
         $userID = $_SESSION['userID'];
-        $sql = "SELECT course.name, course.description, course.id ";
-        $sql .= " FROM `course`,`courseuser`";
-        $sql .= " WHERE courseuser.userID=$userID AND course.id=courseuser.courseID";
-        $sql .= " ORDER BY course.name ASC ";
+        $sql = "SELECT subcourse.name, subcourse.id ";
+        $sql .= " FROM `subcourse`,`course`,`courseuser`";
+        $sql .= " WHERE courseuser.userID=$userID AND course.id=courseuser.courseID AND courseuser.courseID=$courseID";
+        $sql .= " AND subcourse.courseID=$courseID";
+        $sql .= " ORDER BY subcourse.name ASC ";
         $connection = new Database();
         $result = $connection->conn->query($sql);
 

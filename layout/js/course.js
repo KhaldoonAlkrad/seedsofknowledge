@@ -7,4 +7,7 @@ $(document).ready(function () {
 function del(id) {
     window.location.href = "deletecourse.php?id=" + id;
 }
+function showsubcourses(courseID) {
+    $('#subcourse' + courseID).slideToggle('slow');
 
+}
