@@ -1,8 +1,12 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+include 'inti.php';
 
+if (isset($_GET['id'])) {
+    $sql = "DELETE FROM `lesson` WHERE id='" . $_GET['id'] . "'";
+    $connection = new Database();
+    $connection->conn->query($sql);
+    $connection->conn->close();
+    header("Location: lesson.php");
+}
+?>

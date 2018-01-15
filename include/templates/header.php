@@ -26,6 +26,7 @@ and open the template in the editor.
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="layout/js/course.js"></script>
         <script type="text/javascript" src="layout/js/subcourse.js"></script>
+         <script type="text/javascript" src="layout/js/lesson.js"></script>
     </head>
     <body>
         

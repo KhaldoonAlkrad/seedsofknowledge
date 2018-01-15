@@ -276,6 +276,7 @@ class course {
         $sql = "SELECT course.name, course.description, course.id ";
         $sql .= " FROM `course`,`courseuser`";
         $sql .= " WHERE courseuser.userID=$userID AND course.id=courseuser.courseID";
+        $sql.=" ORDER BY course.name ASC ";
         $connection = new Database();
         $result = $connection->conn->query($sql);
         echo "<table id=course-table>";
@@ -306,6 +307,7 @@ class course {
         $sql = "SELECT course.name, course.description, course.id ";
         $sql .= " FROM `course`,`courseuser`";
         $sql .= " WHERE courseuser.userID=$userID AND course.id=courseuser.courseID";
+         $sql.=" ORDER BY course.name ASC ";
         $connection = new Database();
         $result = $connection->conn->query($sql);
         for ($x = 0; $x < $result->num_rows; $x++) {
@@ -414,7 +416,10 @@ class subcourse {
     }
 
     static public function showsubcourses() {
-        $sql = "SELECT course.name as course, subcourse.name, subcourse.description, subcourse.id  FROM `subcourse`, `course` WHERE subcourse.courseID=course.id ";
+        $sql = "SELECT course.name AS course, subcourse.name, subcourse.description, subcourse.id";
+        $sql.= " FROM `subcourse`, `course`";
+        $sql.= " WHERE subcourse.courseID=course.id ";
+        $sql .= " ORDER BY course.name ASC, subcourse.name ASC ";
         $connection = new Database();
         $result = $connection->conn->query($sql);
         echo "<table id=course-table>";
@@ -448,6 +453,7 @@ class subcourse {
         $sql = "SELECT course.name, course.description, course.id ";
         $sql .= " FROM `course`,`courseuser`";
         $sql .= " WHERE courseuser.userID=$userID AND course.id=courseuser.courseID";
+         $sql.=" ORDER BY course.name ASC ";
         $connection = new Database();
         $result = $connection->conn->query($sql);
         echo "<select name='courseID'>";
@@ -464,6 +470,7 @@ class subcourse {
         $sql = "SELECT course.name, course.description, course.id ";
         $sql .= " FROM `course`,`courseuser`";
         $sql .= " WHERE courseuser.userID=$userID AND course.id=courseuser.courseID";
+         $sql.=" ORDER BY course.name ASC ";
         $connection = new Database();
         $result = $connection->conn->query($sql);
 
@@ -559,6 +566,7 @@ class lesson {
         $sql = "SELECT subcourse.name as subcourse, lesson.name, lesson.description, lesson.id ";
         $sql .= " FROM `lesson`,`subcourse`,`course`,`courseuser`";
         $sql .= " WHERE courseuser.userID=$userID AND course.id=courseuser.courseID AND subcourse.courseID=course.id AND lesson.subcourseID=subcourse.id";
+        $sql.=" ORDER BY subcourse.name ASC, lesson.name ASC ";
         $connection = new Database();
         $result = $connection->conn->query($sql);
         echo "<table id=course-table>";
@@ -592,6 +600,7 @@ class lesson {
         $sql = "SELECT subcourse.name, subcourse.description, subcourse.id ";
         $sql .= " FROM `subcourse`,`course`,`courseuser`";
         $sql .= " WHERE courseuser.userID=$userID AND course.id=courseuser.courseID AND subcourse.courseID=course.id";
+        $sql.=" ORDER BY subcourse.name ASC";
         $connection = new Database();
         $result = $connection->conn->query($sql);
         echo "<select name='subcourseID'>";
