@@ -13,7 +13,7 @@ if (isset($_SESSION["name"]) && $_SESSION["name"] != "") {
 ?>
 
 <div>
-    <div id="course-list">
+    <div id="sidelist-container">
         <?php course::showcourselist(); ?>
     </div>
     <div>

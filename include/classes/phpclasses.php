@@ -295,7 +295,7 @@ class course {
             echo "<tr>";
             echo "<td>" . $row['name'] . "</td>";
             echo "<td>" . $row['description'] . "</td>";
-            echo "<td><button onclick=del(" . $row['id'] . ")  class='glyphicon glyphicon-trash' id=cousredelete title=Delete></button></td>";
+            echo "<td><button onclick=delcourse(" . $row['id'] . ")  class='glyphicon glyphicon-trash' id=cousredelete title=Delete></button></td>";
             echo "</tr>";
         }
         echo "</table>";
@@ -313,8 +313,7 @@ class course {
         for ($x = 0; $x < $result->num_rows; $x++) {
             $row = $result->fetch_assoc();
             $courseID=$row['id'];
-            echo "<div id=$courseID onclick=showsubcourses($courseID)>" . $row['name'] . "</div>";
-            echo '<div id=subcourse'.$courseID.'>';
+            echo "<div class=course-list id=$courseID onclick=showsubcourses($courseID)>" . $row['name'];
             subcourse::showsubcourselist($courseID);
             echo '</div>';
         }
@@ -478,10 +477,12 @@ class subcourse {
         $sql .= " ORDER BY subcourse.name ASC ";
         $connection = new Database();
         $result = $connection->conn->query($sql);
-
         for ($x = 0; $x < $result->num_rows; $x++) {
             $row = $result->fetch_assoc();
-            echo "<a class=courselist-a>" . $row['name'] . "</a>";
+            $subcourseID=$row['id'];
+            echo "<div class=subcourse-list id=subcourse".$courseID.">" . $row['name'];
+            lesson::showlessonlist($subcourseID,$courseID);
+            echo "</div>";
         }
         $connection->conn->close();
     }
@@ -614,6 +615,25 @@ class lesson {
             echo "<option value=" . $row['id'] . ">" . $row['name'] . "</option>";
         }
         echo "</select>";
+        $connection->conn->close();
+    }
+    
+      static public function showlessonlist($subcourseID,$courseID) {
+        $userID = $_SESSION['userID'];
+        $sql = "SELECT lesson.name, lesson.id ";
+        $sql .= " FROM `lesson`,`subcourse`,`course`,`courseuser`";
+        $sql .= " WHERE courseuser.userID=$userID AND course.id=courseuser.courseID AND courseuser.courseID=$courseID";
+        $sql .= " AND subcourse.courseID=$courseID AND subcourse.id=$subcourseID AND lesson.subcourseID=$subcourseID";
+        $sql .= " ORDER BY lesson.name ASC ";
+        $connection = new Database();
+        $result = $connection->conn->query($sql);
+        
+        for ($x = 0; $x < $result->num_rows; $x++) {
+            $row = $result->fetch_assoc();
+            $lessonID=$row['id'];
+            echo "<div class=lesson-list id=lesson".$lessonID.">" . $row['name'];
+            echo "</div>";
+        }
         $connection->conn->close();
     }
 

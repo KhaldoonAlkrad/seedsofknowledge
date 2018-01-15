@@ -4,7 +4,7 @@ $(document).ready(function () {
     });
 });
 
-function del(id) {
+function delcourse(id) {
     window.location.href = "deletecourse.php?id=" + id;
 }
 function showsubcourses(courseID) {

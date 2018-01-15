@@ -1,27 +1,44 @@
-#course-list{
-    background-color: #787878;
+#sidelist-container{
+    background-color: red;
     max-width: 300px;
     height: 100%;
     overflow-y: auto;
     padding-left: 5px;
+    cursor: pointer;
 
 }
-.courselist-a {
+
+.course-list  {
+     background-color: lightgray;
+     color: black;
+
+}
+
+.subcourse-list  {
+    padding-left: 10px;
+
+}
+
+.lesson-list  {
+    padding-left: 20px;
+
+}
+
+
+.subcourse-list div {
     display: block;
     color: white;
-   
-
 }
-#course-list a:hover{
+.subcourse-list div:hover{
 
     text-decoration: none;
     cursor: pointer;
     color: white;
     background-color: steelblue;
-   
+
 }
 
-#course-list a:active{
+.subcourse-list div:active{
 
 
 }
