@@ -458,6 +458,21 @@ class subcourse {
         echo "</select>";
         $connection->conn->close();
     }
+    
+     static public function showsubcourselist() {
+        $userID = $_SESSION['userID'];
+        $sql = "SELECT course.name, course.description, course.id ";
+        $sql .= " FROM `course`,`courseuser`";
+        $sql .= " WHERE courseuser.userID=$userID AND course.id=courseuser.courseID";
+        $connection = new Database();
+        $result = $connection->conn->query($sql);
+        
+        for ($x = 0; $x < $result->num_rows; $x++) {
+            $row = $result->fetch_assoc();
+            echo "<a class=courselist-a>" . $row['name'] . "</a>";
+        }
+        $connection->conn->close();
+    }
 
 }
 
@@ -504,6 +519,10 @@ class lesson {
 
     public function setsubcourseID($subcourseID) {
         $this->subcourseID = $subcourseID;
+    }
+    
+    public function optionsubcourse(){
+        
     }
 
 }
