@@ -8,18 +8,18 @@
     float: left;
     width: 500px;
     display: inline;
-    border-radius: 10px;
+   
 }
 
 #data-container{
-    background-color: lightgray;
+  
     height: 400px;
     width: 1000px;
     float: left;
     display: inline;
     margin-left: 10px;
     overflow-y: auto;
-    border-radius: 10px;
+   
     
 }
 
@@ -61,5 +61,12 @@
     background-color: steelblue;
    
 
+}
+
+.section{
+    
+    margin: 10px;
+    background-color: lightslategray;
+    color: white;
 }
 

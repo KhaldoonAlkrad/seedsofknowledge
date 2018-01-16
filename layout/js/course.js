@@ -13,5 +13,6 @@ function subcoursesToggle(courseID) {
 }
 function lessonToggle(subcourseID) {
     $('#subcourse'+subcourseID).next().children().slideToggle('fast');
+    
 
 }
