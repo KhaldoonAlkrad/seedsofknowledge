@@ -8,37 +8,48 @@
     float: left;
     width: 500px;
     display: inline;
-   
+
 }
 
-#data-container{
-  
+#lesson-container{
+
     height: 400px;
     width: 1000px;
     float: left;
     display: inline;
-    margin-left: 10px;
-    overflow-y: auto;
-   
-    
+    margin: 10px;
+
+}
+
+#lesson-title{
+    text-align: center;
+    font-weight: bold;
+    font-size: 40px;
+    margin: 10px;
+    height: 80px;
+    width: 900px;
+    margin-top: -3px;
+    padding-top: 10px;
+
+
 }
 
 #sidelist-container a:hover{
-    
+
     text-decoration: none;
-    
-    
+
+
 }
 
 #sidelist-container > a{
-    
+
     color: black;
 }
 
 .course-list > a  {
-     background-color: gray;
-     color:darkslategray;
-     padding-left: 20px;
+    background-color: gray;
+    color:darkslategray;
+    padding-left: 20px;
 
 }
 
@@ -59,14 +70,60 @@
     cursor: pointer;
     color: white;
     background-color: steelblue;
-   
+
 
 }
 
 .section{
-    
     margin: 10px;
-    background-color: lightslategray;
+    background-color: gray;
     color: white;
+    width: 900px;
 }
+
+.section table{
+    width: 900px;
+}
+
+.section table td, .section table tr {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 600px;
+    margin-left: 10px;
+    background-color: gray;
+    border: 1px solid white;
+
+}
+.section table tr:first-child td:first-child{
+    width: 30px;
+    padding: 5px;
+    text-align: center;
+    background-color: steelblue;
+    font-weight: bold;
+    font-size: 15px;
+
+}
+
+.section table tr:first-child td:nth-child(2){
+    width: 600px;
+    padding: 5px;
+    text-align: center;
+    font-size: 25px;
+    background-color: #396a93;
+}
+
+.section table tr:nth-child(2) td:first-child{
+    width: 600px;
+    padding: 7px;
+    text-align: justify;
+    font-size: 15px;
+    background-color:lightgray ;
+    overflow: auto;
+    color: #404040;
+}
+
+.section table td p{
+    color: red;
+}
+
 
