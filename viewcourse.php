@@ -16,7 +16,7 @@ if (isset($_SESSION["name"]) && $_SESSION["name"] != "") {
     <div id="sidelist-container">
         <?php course::showcourselist(); ?>
     </div>
-    <div>
+    <div id="data-container">
 
     </div>
 </div>

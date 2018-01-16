@@ -312,9 +312,9 @@ class course {
         $result = $connection->conn->query($sql);
         for ($x = 0; $x < $result->num_rows; $x++) {
             $row = $result->fetch_assoc();
-            $courseID=$row['id'];
-            echo "<a id=course$courseID onclick=subcoursesToggle($courseID)>". $row['name']."</a>";
-            echo "<div class=course-list  >" ;
+            $courseID = $row['id'];
+            echo "<a id=course$courseID onclick=subcoursesToggle($courseID)>" . $row['name'] . "</a>";
+            echo "<div class=course-list  >";
             subcourse::showsubcourselist($courseID);
             echo '</div>';
         }
@@ -480,10 +480,10 @@ class subcourse {
         $result = $connection->conn->query($sql);
         for ($x = 0; $x < $result->num_rows; $x++) {
             $row = $result->fetch_assoc();
-            $subcourseID=$row['id'];
-            echo "<a id=subcourse$subcourseID onclick=lessonToggle($subcourseID)>". $row['name']."</a>";
+            $subcourseID = $row['id'];
+            echo "<a id=subcourse$subcourseID onclick=lessonToggle($subcourseID)>" . $row['name'] . "</a>";
             echo "<div class=subcourse-list>";
-            lesson::showlessonlist($subcourseID,$courseID);
+            lesson::showlessonlist($subcourseID, $courseID);
             echo "</div>";
         }
         $connection->conn->close();
@@ -619,8 +619,8 @@ class lesson {
         echo "</select>";
         $connection->conn->close();
     }
-    
-      static public function showlessonlist($subcourseID,$courseID) {
+
+    static public function showlessonlist($subcourseID, $courseID) {
         $userID = $_SESSION['userID'];
         $sql = "SELECT lesson.name, lesson.id ";
         $sql .= " FROM `lesson`,`subcourse`,`course`,`courseuser`";
@@ -629,11 +629,11 @@ class lesson {
         $sql .= " ORDER BY lesson.name ASC ";
         $connection = new Database();
         $result = $connection->conn->query($sql);
-        
+
         for ($x = 0; $x < $result->num_rows; $x++) {
             $row = $result->fetch_assoc();
-            $lessonID=$row['id'];
-            echo "<div class=lesson-list id=lesson".$lessonID.">" . $row['name'];
+            $lessonID = $row['id'];
+            echo "<div class=lesson-list id=lesson" . $lessonID . " onclick=getsections($lessonID)>" . $row['name'];
             echo "</div>";
         }
         $connection->conn->close();
@@ -792,6 +792,27 @@ class section {
         }
         echo "</table>";
         $connection->conn->close();
+    }
+
+    static public function getsections($lessonID) {
+        $sectionArray=array();
+        $sql = "SELECT * FROM `section` WHERE section.lessonID='$lessonID'ORDER BY section.letter";
+        $connection = new Database();
+        $result = $connection->conn->query($sql);
+        if ($result->num_rows >= 1) {
+            for ($x = 0; $x < $result->num_rows; $x++) {
+                $row = $result->fetch_assoc();
+                $section =new section("","","");
+                $section->setlessonID($row['id']);
+                $section->setname($row['name']);
+                $section->setcontent($row['content']);
+                $section->setletter($row['letter']);
+                $section->setlessonID($lessonID);
+                $sectionArray[$x]=$section;
+            }
+            $connection->conn->close();
+            return $sectionArray;
+        }
     }
 
 }
