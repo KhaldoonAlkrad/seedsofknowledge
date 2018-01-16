@@ -313,7 +313,8 @@ class course {
         for ($x = 0; $x < $result->num_rows; $x++) {
             $row = $result->fetch_assoc();
             $courseID=$row['id'];
-            echo "<div class=course-list id=$courseID onclick=showsubcourses($courseID)>" . $row['name'];
+            echo "<a id=course$courseID onclick=subcoursesToggle($courseID)>". $row['name']."</a>";
+            echo "<div class=course-list  >" ;
             subcourse::showsubcourselist($courseID);
             echo '</div>';
         }
@@ -480,7 +481,8 @@ class subcourse {
         for ($x = 0; $x < $result->num_rows; $x++) {
             $row = $result->fetch_assoc();
             $subcourseID=$row['id'];
-            echo "<div class=subcourse-list id=subcourse".$courseID.">" . $row['name'];
+            echo "<a id=subcourse$subcourseID onclick=lessonToggle($subcourseID)>". $row['name']."</a>";
+            echo "<div class=subcourse-list>";
             lesson::showlessonlist($subcourseID,$courseID);
             echo "</div>";
         }
