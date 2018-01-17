@@ -130,7 +130,6 @@ class user {
         $sql .= " ('$this->name','$this->email','$this->password','$this->role')";
         $connection = new Database();
         $result = $connection->conn->query($sql);
-        $_SESSION["name"] = $this->name;
         $connection->conn->close();
         header("location: login.php");
     }
@@ -420,9 +419,10 @@ class subcourse {
     }
 
     static public function showsubcourses() {
+        $userID = $_SESSION['userID'];
         $sql = "SELECT course.name AS course, subcourse.name, subcourse.description, subcourse.id";
-        $sql .= " FROM `subcourse`, `course`";
-        $sql .= " WHERE subcourse.courseID=course.id ";
+        $sql .= " FROM `courseuser`,`user`,`subcourse`, `course`";
+        $sql .= " WHERE user.id=$userID AND subcourse.courseID=course.id AND courseuser.userID=$userID AND course.id=courseuser.courseID ";
         $sql .= " ORDER BY course.name ASC, subcourse.name ASC ";
         $connection = new Database();
         $result = $connection->conn->query($sql);
