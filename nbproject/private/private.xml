@@ -12,12 +12,14 @@
             <file>file:/C:/xampp/htdocs/seedsofknowledge/include/templates/nav.php</file>
             <file>file:/C:/xampp/htdocs/seedsofknowledge/include/templates/loginnav.php</file>
             <file>file:/C:/xampp/htdocs/seedsofknowledge/section.php</file>
-            <file>file:/C:/xampp/htdocs/seedsofknowledge/layout/js/section.js</file>
             <file>file:/C:/xampp/htdocs/seedsofknowledge/layout/css/login.css</file>
+            <file>file:/C:/xampp/htdocs/seedsofknowledge/layout/js/section.js</file>
             <file>file:/C:/xampp/htdocs/seedsofknowledge/deletesubcourse.php</file>
+            <file>file:/C:/xampp/htdocs/seedsofknowledge/include/classes/database.php</file>
             <file>file:/C:/xampp/htdocs/seedsofknowledge/layout/js/course.js</file>
-            <file>file:/C:/xampp/htdocs/seedsofknowledge/logout.php</file>
             <file>file:/C:/xampp/htdocs/seedsofknowledge/layout/css/viewcourse.css</file>
+            <file>file:/C:/xampp/htdocs/seedsofknowledge/logout.php</file>
+            <file>file:/C:/xampp/htdocs/seedsofknowledge/getsections.php</file>
             <file>file:/C:/xampp/htdocs/seedsofknowledge/layout/css/template.css</file>
             <file>file:/C:/xampp/htdocs/seedsofknowledge/include/classes/phpclasses.php</file>
             <file>file:/C:/xampp/htdocs/seedsofknowledge/include/templates/footer.php</file>

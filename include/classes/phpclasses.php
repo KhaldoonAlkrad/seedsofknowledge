@@ -426,7 +426,7 @@ class subcourse {
         $sql .= " ORDER BY course.name ASC, subcourse.name ASC ";
         $connection = new Database();
         $result = $connection->conn->query($sql);
-        echo "<table id=course-table>";
+        echo "<table id=subcourse-table>";
         echo "<colgroup>";
         echo "<col>";
         echo "<col>";
@@ -577,7 +577,7 @@ class lesson {
         $sql .= " ORDER BY subcourse.name ASC, lesson.name ASC ";
         $connection = new Database();
         $result = $connection->conn->query($sql);
-        echo "<table id=course-table>";
+        echo "<table id=lesson-table>";
         echo "<colgroup>";
         echo "<col>";
         echo "<col>";
@@ -765,7 +765,7 @@ class section {
         $sql .= " ORDER BY subcourse.name ASC, lesson.name ASC, section.letter ASC ";
         $connection = new Database();
         $result = $connection->conn->query($sql);
-        echo "<table id=course-table>";
+        echo "<table id=section-table>";
         echo "<colgroup>";
         echo "<col>";
         echo "<col>";

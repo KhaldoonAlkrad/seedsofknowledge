@@ -1,10 +1,53 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : Jan 12, 2018, 9:33:55 AM
-    Author     : Student
-*/
+#lesson-table {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px;
+    padding: 10px;
+    overflow-x:auto;
+    max-width: 1620px;
+       
+}
 
+#lesson-table td, #lesson-table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#lesson-table tr:nth-child(even){background-color: #f2f2f2;}
+
+#lesson-table tr:hover {background-color: #ddd;}
+
+#lesson-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: steelblue;
+    color: white;
+     border-radius: 2px;
+}
+#lesson-table col:first-child {
+   width:25%;
+}
+#lesson-table col:nth-child(2){
+     width:25%;
+}
+#lesson-table col:nth-child(3){
+     width:45%;
+}
+#lesson-table col:last-child {
+  
+   width:5%;
+   
+}
+#lesson-table tr td button {
+    width: 50px;
+   
+}
+#lesson-table tr td  {
+    
+   text-align: center;
+   padding: 0px;
+   cursor: pointer;
+    height: 45px;
+}

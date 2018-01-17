@@ -21,6 +21,9 @@ and open the template in the editor.
         <link rel="stylesheet" type="text/css" href="<?php echo $css; ?>register.css">
         <link rel="stylesheet" type="text/css" href="<?php echo $css; ?>template.css">
         <link rel="stylesheet" type="text/css" href="<?php echo $css; ?>makecourse.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo $css; ?>subcourse.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo $css; ?>lesson.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo $css; ?>section.css">
         <link rel="stylesheet" type="text/css" href="<?php echo $css; ?>viewcourse.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

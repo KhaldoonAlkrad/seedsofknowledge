@@ -8,11 +8,11 @@ function delcourse(id) {
     window.location.href = "deletecourse.php?id=" + id;
 }
 function subcoursesToggle(courseID) {
-    $('#course'+courseID).next().children().slideToggle('fast');
+    $('#course'+courseID).next().children().slideToggle(1500);
 
 }
 function lessonToggle(subcourseID) {
-    $('#subcourse'+subcourseID).next().children().slideToggle('fast');
+    $('#subcourse'+subcourseID).next().children().slideToggle(1500);
     
 
 }
