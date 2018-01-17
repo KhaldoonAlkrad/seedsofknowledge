@@ -5,10 +5,10 @@ include $tem . 'header.php';
 <div class="webcontainer">
     <?php
     if (isset($_SESSION["name"]) && $_SESSION["name"] != "") {
-      
+
         include $tem . 'loginnav.php';
     } else {
-         include $tem . 'nav.php';
+        include $tem . 'nav.php';
     }
     ?>
 
@@ -18,7 +18,7 @@ include $tem . 'header.php';
             <p>When you know your learning path you have a full idea about what you have to learn </p>
             <p>When you know your learning path you have a full idea about what you have to learn </p>
             <p>When you know your learning path you have a full idea about what you have to learn </p>
-            <p>When you know your learning path you have a full idea about what you have to learn </p>
+            <p><img id="lpimg" src="<?php echo $img; ?>lp.png" alt="Learning Path Image"></p>
         </div>
         <div class="column">
             <h3>Structured Information</h3>
@@ -34,11 +34,7 @@ include $tem . 'header.php';
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
             <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
         </div>
-
-
     </div>
-
-
 </div>
 
 <?php include $tem . 'footer.php'; ?> 

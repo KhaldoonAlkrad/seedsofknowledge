@@ -143,11 +143,9 @@ class user {
             if ($result->num_rows <= 0) {
                 return "email or password does not match";
             } else {
-                session_start();
                 $row = $result->fetch_assoc();
                 $_SESSION["name"] = $row['name'];
                 $_SESSION["userID"] = $row['id'];
-
                 $connection->conn->close();
                 header("location: index.php");
             }

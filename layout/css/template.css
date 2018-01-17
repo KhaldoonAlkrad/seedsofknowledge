@@ -28,5 +28,24 @@
     color: gray;
     font-family: 'Old Standard TT', serif;
     letter-spacing: 6px;
-    
+
+}
+
+#headerimg{
+    width: auto;
+
+}
+
+.headercontainer{
+    background-color: white !important; 
+    border-top: 2px solid steelblue;
+    padding-right: 60px;    
+}
+
+#lpimg{
+    margin-left: 80px;
+    margin-top: 60px;
+    width: 250px;
+    height: 250px;
+    position: relative;
 }
