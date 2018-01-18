@@ -1,6 +1,8 @@
 <?php
 include 'inti.php';
 include $tem . 'header.php';
+$user = new user("", "", "", "", "");
+$msg = $user->checksignin();
 if (isset($_SESSION["name"]) && $_SESSION["name"] != "") {
     include $tem . 'loginnav.php';
     header("location: makecourse.php");
@@ -23,10 +25,6 @@ if (isset($_SESSION["name"]) && $_SESSION["name"] != "") {
             <input type="password" placeholder="Enter Password" name="psw" required>
 
             <button type="submit">Login</button>
-            <?php
-            $user = new user("", "", "", "", "");
-            $msg = $user->checksignin();
-            ?>
             <span class=error>
                 <?php
                 if (isset($msg)) {
