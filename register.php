@@ -1,8 +1,8 @@
 <?php
 include 'inti.php';
+$user = new user("", "", "", "", ""); //nieuwe parameters
+$msg = $user->checkaccountinput();
 include $tem . 'header.php';
-?>
-<?php
 include $tem . 'nav.php';
 ?>
 
@@ -18,10 +18,6 @@ include $tem . 'nav.php';
             <label><input type="radio" name="role" value="student" required>&nbsp;Student&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
             <label><input type="radio" name="role" value="teacher" required>&nbsp;Teacher</label>
             <button type="submit" >Submit</button>
-            <?php
-            $user = new user("", "", "", "", ""); //nieuwe parameters
-            $msg = $user->checkaccountinput();
-            ?>
             <div class=error> <?php echo $msg; ?> </div>
         </div>
     </form>
