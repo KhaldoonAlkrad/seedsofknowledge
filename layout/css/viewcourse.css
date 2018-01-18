@@ -118,7 +118,7 @@
 .section table tr:first-child td:nth-child(2){
     width: 600px;
     padding: 5px;
-    text-align: center;
+    text-align: left;
     font-size: 25px;
     background-color: #396a93;
 }

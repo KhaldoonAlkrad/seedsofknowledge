@@ -801,7 +801,7 @@ class section {
             for ($x = 0; $x < $result->num_rows; $x++) {
                 $row = $result->fetch_assoc();
                 $section =new section("","","");
-                $section->setlessonID($row['id']);
+                $section->setid($row['id']);
                 $section->setname($row['name']);
                 $section->setcontent($row['content']);
                 $section->setletter($row['letter']);
