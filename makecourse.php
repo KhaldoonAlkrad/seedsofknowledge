@@ -56,4 +56,4 @@ if (isset($_SESSION["name"]) && $_SESSION["name"] != "") {
 </div>
 
 
-
+<?php include $tem . 'footer.php'; ?> 

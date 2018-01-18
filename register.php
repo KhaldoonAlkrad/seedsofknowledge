@@ -26,3 +26,4 @@ include $tem . 'nav.php';
         </div>
     </form>
 </div>
+<?php include $tem . 'footer.php'; ?> 

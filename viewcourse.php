@@ -21,3 +21,4 @@ if (isset($_SESSION["name"]) && $_SESSION["name"] != "") {
         <div id="data-container"></div>
     </div>
 </div>
+<?php include $tem . 'footer.php'; ?> 
