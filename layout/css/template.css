@@ -8,6 +8,7 @@
 
     text-align: center;
     font-size: 12px;
+    position: relative;
 
 }
 
@@ -33,19 +34,32 @@
 
 #headerimg{
     width: auto;
-
+    
 }
 
 .headercontainer{
     background-color: white !important; 
     border-top: 0px solid steelblue;
     border-bottom: 1px solid steelblue;
-   
     padding-right: 60px; 
-    margin: 2px;
+    margin: 0px;
 }
 
 #lpimg{
+    margin-left: 80px;
+    margin-top: 60px;
+    width: 250px;
+    height: 250px;
+    float: left;
+}
+#siimg{
+    margin-left: 80px;
+    margin-top: 60px;
+    width: 250px;
+    height: 250px;
+    float: left;
+}
+#saeimg{
     margin-left: 80px;
     margin-top: 60px;
     width: 250px;
